@@ -6,7 +6,7 @@
 /*   By: eduwer <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/31 14:42:05 by eduwer            #+#    #+#             */
-/*   Updated: 2018/03/31 18:44:19 by eduwer           ###   ########.fr       */
+/*   Updated: 2018/03/31 18:49:54 by eduwer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ Player::Player( Player const &src ) : AObject(src._pos[0], src._pos[1], src._hp)
 
 Player::~Player ( void ) {
 
-	return;
+	delete [] this->_missiles;
 
 }
 
