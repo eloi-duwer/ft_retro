@@ -6,12 +6,13 @@
 /*   By: eduwer <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/31 14:28:55 by eduwer            #+#    #+#             */
-/*   Updated: 2018/03/31 19:52:01 by eduwer           ###   ########.fr       */
+/*   Updated: 2018/03/31 20:42:38 by eduwer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "GameObject.hpp"
 #include <ncurses.h>
+#include <cstdlib>
 
 
 GameObject::GameObject( void ) : _player(), _enemies(NULL), _nbEnemies(0) {
@@ -53,7 +54,6 @@ void	GameObject::newEnemy( void ) {
 		newEnemy[i] = this->_enemies[i];
 		++i;
 	}
-	// newEnemy[i].setPos(this->_pos[0], this->_pos[1]);
 	delete [] this->_enemies;
 	this->_enemies = newEnemy;
 	this->_nbEnemies += 1;
@@ -117,10 +117,34 @@ int		GameObject::getNbEnemies( void ) const {
 void	GameObject::updateGame( int keyCode ) {
 
 	int i = 0;
+	int j;
+
+	this->_player.update( keyCode );
 	while (i < this->_nbEnemies) {
+		j = 0;
+		while (j < this->_player.getNbMissiles()) {
+			if (this->_enemies[i].onCollision(this->_player.getMissiles()[j])) {
+				this->deleteEnemy(i);
+				this->_player.deleteMissile(j);
+				--i;
+				break;
+			}
+			++j;
+		}
 		this->_enemies[i].update();
+		if (this->_enemies[i].onCollision(this->_player)) {
+			endwin();
+			std::exit(0);
+		}
+		while (j < this->_player.getNbMissiles()) {
+			if (this->_enemies[i].onCollision(this->_player.getMissiles()[j])) {
+				this->deleteEnemy(i);
+				this->_player.deleteMissile(j);
+				--i;
+				break;
+			}
+			++j;
+		}
 		++i;
 	}
-	this->_player.update( keyCode );
-
 }

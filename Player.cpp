@@ -6,7 +6,7 @@
 /*   By: eduwer <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/31 14:42:05 by eduwer            #+#    #+#             */
-/*   Updated: 2018/03/31 19:46:03 by eduwer           ###   ########.fr       */
+/*   Updated: 2018/03/31 20:26:56 by eduwer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,5 +110,17 @@ void	Player::deleteMissile( int index ) {
 	delete [] this->_missiles;
 	this->_missiles = newmissiles;
 	this->_nbMissiles -= 1;
+
+}
+
+int		Player::getNbMissiles( void ) const {
+
+	return this->_nbMissiles;
+
+}
+
+const Missile	*Player::getMissiles( void ) const {
+
+	return this->_missiles;
 
 }

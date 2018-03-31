@@ -6,7 +6,7 @@
 /*   By: eduwer <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/31 18:04:12 by eduwer            #+#    #+#             */
-/*   Updated: 2018/03/31 19:45:04 by eduwer           ###   ########.fr       */
+/*   Updated: 2018/03/31 20:11:36 by eduwer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ Missile::~Missile( void ) {
 
 bool	Missile::update( int keycode ) {
 
-	if (this->_pos[1] < 0)
+	if (this->_pos[1] < 1)
 		return false;
 	keycode++;
 	this->_pos[1] -= 1;
