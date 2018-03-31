@@ -1,33 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Enemy.hpp                                         :+:      :+:    :+:   */
+/*   Map.hpp           		                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eduwer <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/31 14:23:58 by eduwer            #+#    #+#             */
-/*   Updated: 2018/03/31 15:12:04 by eduwer           ###   ########.fr       */
+/*   Created: 2018/03/31 00:22:21 by eduwer            #+#    #+#             */
+/*   Updated: 2018/03/31 00:38:42 by eduwer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef _ENEMY_
-# define _ENEMY_
+#ifndef _MAP_HPP_
+# define _MAP_HPP_
 
-#include "AObject.hpp"
+#include <iostream>
+#include <ncurses.h>
+#include <sstream>
 
-class Enemy : public AObject {
+class Map {
 
 	public:
-		Enemy ( void );
-		Enemy( Enemy const &src );
-		~Enemy( void );
+		Map( void );
+		// Map( Map &src);
+		~Map( void );
+		
+		std::string getOutput(void);
 
-		char skin;
+		int height;
+		int width;
 
-		//Enemy &operator=( Enemy const &src );
 
-		virtual void update( void );
+		// Map &operator=(Map const &src);
 
 };
+std::ostream &	operator<<(std::ostream & o, Map const & i);
 
-# endif
+#endif

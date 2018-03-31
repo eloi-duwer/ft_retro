@@ -1,33 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Enemy.hpp                                         :+:      :+:    :+:   */
+/*   AObject.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eduwer <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/31 14:23:58 by eduwer            #+#    #+#             */
-/*   Updated: 2018/03/31 15:12:04 by eduwer           ###   ########.fr       */
+/*   Created: 2018/03/31 00:22:21 by eduwer            #+#    #+#             */
+/*   Updated: 2018/03/31 15:16:56 by eduwer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef _ENEMY_
-# define _ENEMY_
+#ifndef _AObject_HPP_
+# define _AObject_HPP_
 
-#include "AObject.hpp"
-
-class Enemy : public AObject {
+class AObject {
 
 	public:
-		Enemy ( void );
-		Enemy( Enemy const &src );
-		~Enemy( void );
+		AObject( void );
+		AObject( int x, int y, int hp);
+		AObject( AObject const &src);
+		~AObject( void );
 
-		char skin;
+		AObject &operator=(AObject const &src);
+		const int		*getPos( void ) const;
+		int		getHp( void ) const;
+		int		takeDamage(int damage);
+		virtual void update() = 0;
 
-		//Enemy &operator=( Enemy const &src );
-
-		virtual void update( void );
+	protected:
+		int		_pos[2];
+		int		_hp;
 
 };
 
-# endif
+#endif

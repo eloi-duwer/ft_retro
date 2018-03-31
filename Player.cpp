@@ -10,18 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Object.hpp"
+#include "AObject.hpp"
 #include "Player.hpp"
 #include "Missile.hpp"
 #include <ncurses.h>
 
-Player::Player( void ) : Object(COLS / 2, LINES - 2, 1) {
+Player::Player( void ) : AObject(COLS / 2, LINES - 2, 1) {
 
 	return;
 
 }
 
-Player::Player( Player const &src ) : Object(src._pos[0], src._pos[1], src._hp) {
+Player::Player( Player const &src ) : AObject(src._pos[0], src._pos[1], src._hp) {
 
 	return;
 
@@ -33,7 +33,7 @@ Player::~Player ( void ) {
 
 }
 
-void	Player::updatePlayer( int keyCode ) {
+void	Player::update( int keyCode ) {
 
 	/*if (keyCode == KEY_DOWN)
 		this->_pos[1] += 1;

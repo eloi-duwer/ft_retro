@@ -11,12 +11,26 @@
 /* ************************************************************************** */
 
 #include "Enemy.hpp"
-#include "Object.hpp"
+#include "AObject.hpp"
+#include "Map.hpp"
 #include <ncurses.h>
 #include <cstdlib>
 
-Enemy::Enemy( void ) : Object(std::rand() % COLS, 0, 2) {
+Enemy::Enemy( void ) : skin('V')
+{
+	AObject::_pos[0] = rand () % COLS;
+	AObject::_pos[1] = 1;
+	AObject::_hp = 1;
+}
 
-
+Enemy::~Enemy( void )
+{
 
 }
+
+void Enemy::update( void )
+{
+	move(AObject::_pos[1], AObject::_pos[0]);
+	addch(this->skin);
+}
+

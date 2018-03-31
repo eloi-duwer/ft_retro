@@ -13,10 +13,10 @@
 #ifndef _PLAYER_HPP_
 # define _PLAYER_HPP_
 
-#include "Object.hpp"
+#include "AObject.hpp"
 #include "Missile.hpp"
 
-class Player : public Object {
+class Player : public AObject {
 
 	public:
 		Player( void );
@@ -25,7 +25,7 @@ class Player : public Object {
 
 		//Player	&operator=( Player const &src );
 
-		void			updatePlayer( int keyCode );
+		virtual void			update( int keyCode );
 		const Missile	*getMissiles( void ) const;
 		void	deleteMissile( Missile *adress );
 		void	deleteMissile( int index );
