@@ -6,7 +6,7 @@
 /*   By: eduwer <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/31 00:37:23 by eduwer            #+#    #+#             */
-/*   Updated: 2018/03/31 16:24:00 by eduwer           ###   ########.fr       */
+/*   Updated: 2018/03/31 17:18:24 by eduwer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,16 @@ class Player : public AObject {
 		Player( Player const &src );
 		~Player( void );
 
-		//Player	&operator=( Player const &src );
-
-		virtual void			update( int keyCode );
+		//Player    &operator=( Player const &src );
+		virtual void	update( int keyCode );
 		const Missile	*getMissiles( void ) const;
-		void	deleteMissile( Missile *adress );
-		void	deleteMissile( int index );
+		void			deleteMissile( Missile *adress );
+		void			deleteMissile( int index );
 
-	private:
-		void	newMissile( void );
-		Missile	*missiles;
-		int		nbMissiles;
+		private:
+			void	newMissile( void );
+			Missile	*missiles;
+			int		nbMissiles;
 };
 
 # endif
