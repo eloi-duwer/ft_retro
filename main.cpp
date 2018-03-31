@@ -54,9 +54,7 @@ int main() {
 		else if (keyPressed == 27)
 			noExit = 0;
 		erase();
-			move(posY, posX);
 		GO->updateGame(0);
-		addch('^');
 		wborder(stdscr, 0, 0, 0, 0, 0, 0, 0, 0);
 		wrefresh(stdscr);
 	}

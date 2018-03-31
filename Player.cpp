@@ -21,7 +21,7 @@ Player::Player( void ) : AObject(COLS / 2, LINES - 2, 1) {
 
 }
 
-Player::Player( Player const &src ) : AObject(src._pos[0], src._pos[1], src._hp) {
+Player::Player( Player const &src ) : AObject(src._pos[0], src._pos[1], src._hp), _skin('H') {
 
 	return;
 
@@ -33,28 +33,33 @@ Player::~Player ( void ) {
 
 }
 
-void	Player::update( int keyCode ) {
+bool	Player::update( int keyCode ) {
 
 	/*if (keyCode == KEY_DOWN)
 		this->_pos[1] += 1;
 	else if (keyCode == KEY_UP)
 		this->_pos[1] -= 1;
-	else */if (keyCode == KEY_LEFT && this->_pos[0] > 0)
+	else */
+
+	if (keyCode == KEY_LEFT && this->_pos[0] > 0)
 		this->_pos[0] -= 1;
 	else if (keyCode == KEY_RIGHT && this->_pos[0] < COLS - 1)
 		this->_pos[0] += 1;
 	else if (keyCode == ' ')
 		Player::_newMissile();
 
+	move(this->_pos[1], this->_pos[0]);
+	addch(_skin);
 	int i = 0;
 	while (i < this->_nbMissiles) {
-		this->_missiles[i].update();
-		if (this->_missiles[i].getPos()[1] < 0) {
+		if (!this->_missiles[i].update())
+		{
 			deleteMissile(i);
 			--i;
 		}
 		++i;
 	}
+	return true;
 }
 
 void	Player::_newMissile( void ) {

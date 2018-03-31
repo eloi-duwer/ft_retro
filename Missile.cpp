@@ -12,7 +12,7 @@
 
 #include "Missile.hpp"
 
-Missile::Missile( void ) : AObject(0, 0, 1) {
+Missile::Missile( void ) : AObject(0, 0, 1), _skin('|'){
 
 	return;
 
@@ -30,11 +30,15 @@ Missile::~Missile( void ) {
 
 }
 
-void	Missile::update( int keycode ) {
+bool	Missile::update( int keycode ) {
 
+	if (this->_pos[1] < 0)
+		return false;
 	keycode++;
 	this->_pos[1] -= 1;
-
+	move(this->_pos[1], this->_pos[0]);
+	addch(this->_skin);
+	return true;
 }
 
 void	Missile::setPos(int x, int y) {

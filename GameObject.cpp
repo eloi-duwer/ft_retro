@@ -116,11 +116,11 @@ int		GameObject::getNbEnemies( void ) const {
 
 void	GameObject::updateGame( int keyCode ) {
 
-	this->_player.update( keyCode );
 	int i = 0;
 	while (i < this->_nbEnemies) {
 		this->_enemies[i].update();
 		++i;
 	}
+	this->_player.update( keyCode );
 
 }

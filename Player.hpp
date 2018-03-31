@@ -15,6 +15,7 @@
 
 #include "AObject.hpp"
 #include "Missile.hpp"
+#include <ncurses.h>
 
 class Player : public AObject {
 
@@ -26,12 +27,13 @@ class Player : public AObject {
 		const Missile	*getMissiles( void ) const;
 		void			deleteMissile( Missile *adress );
 		void			deleteMissile( int index );
-		virtual void	update( int keyCode );
+		virtual bool	update( int keyCode );
 
 	private:
 		void	_newMissile( void );
 		Missile	*_missiles;
 		int		_nbMissiles;
+		char _skin;
 
 };
 

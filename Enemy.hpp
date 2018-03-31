@@ -26,7 +26,7 @@ class Enemy : public AObject {
 		int framesOfExistence;
 		//Enemy &operator=( Enemy const &src );
 
-		virtual void update(int keycode = 0);
+		virtual bool update(int keycode = 0);
 
 };
 

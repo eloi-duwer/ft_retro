@@ -14,6 +14,7 @@
 # define MISSILE_HPP
 
 #include "AObject.hpp"
+#include <ncurses.h>
 
 class Missile : public AObject {
 
@@ -22,9 +23,10 @@ class Missile : public AObject {
 		Missile( Missile const &src );
 		~Missile( void );
 
-		virtual void	update( int keycode = 0 );
+		virtual bool update( int keycode = 0 );
 		void			setPos( int x, int y );
-
+private:
+		char _skin;
 
 };
 
