@@ -18,6 +18,7 @@
 #include "Map.hpp"
 #include "AObject.hpp"
 #include "Enemy.hpp"
+#include "GameObject.hpp"
 
 
 int main() {
@@ -25,8 +26,8 @@ int main() {
 	
 	srand(time(NULL));
 	// Map *map = new Map();
-	Enemy *enemy = new Enemy();
-
+	// Enemy *enemy = new Enemy();
+	GameObject *GO = new GameObject();
 	int noExit = 1;
 	int posY = LINES / 2;
 	int posX = COLS / 2;
@@ -39,6 +40,8 @@ int main() {
 	int frames = 0;
 	while (noExit) {
 		frames++;
+		if (frames % 20 == 0)
+			GO->newEnemy();
 		keyPressed = getch();
 		if (keyPressed == KEY_DOWN)
 			posY += 1;
@@ -51,10 +54,8 @@ int main() {
 		else if (keyPressed == 27)
 			noExit = 0;
 		erase();
-		waddstr(stdscr, "Le joueur -> ");
-		// if (frames % 2 == 0)
-		enemy->update();
-		move(posY, posX);
+			move(posY, posX);
+		GO->updateGame(0);
 		addch('^');
 		wborder(stdscr, 0, 0, 0, 0, 0, 0, 0, 0);
 		wrefresh(stdscr);

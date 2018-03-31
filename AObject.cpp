@@ -39,6 +39,14 @@ AObject::~AObject( void )
 
 }
 
+bool AObject::onCollision(AObject const & aobj)
+{
+	if (this->_pos[0] == aobj.getPos()[0] &&
+		this->_pos[1] == aobj.getPos()[1])
+		return true;
+	return false;
+}
+
 AObject	&AObject::operator=(AObject const &src) {
 
 	this->_pos[0] = src._pos[0];

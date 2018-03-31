@@ -45,10 +45,55 @@ GameObject	&GameObject::operator=(GameObject const &src) {
 
 }
 
-Enemy GameObject::createEnemy()
-{
-	this->_enemies[_nbEnemies] = new Enemy();
+void	GameObject::newEnemy( void ) {
+
+	Enemy *newEnemy = new Enemy[this->_nbEnemies + 1];
+	int i = 0;
+	while ( i < this->_nbEnemies) {
+		newEnemy[i] = this->_enemies[i];
+		++i;
+	}
+	// newEnemy[i].setPos(this->_pos[0], this->_pos[1]);
+	delete [] this->_enemies;
+	this->_enemies = newEnemy;
 	this->_nbEnemies += 1;
+
+}
+
+void	GameObject::deleteEnemy(Enemy *adress) {
+
+	Enemy *newEnemy = new Enemy[this->_nbEnemies - 1];
+	int	i = 0;
+	int	j = 0;
+	while ( i < this->_nbEnemies) {
+		if (&(this->_enemies[i]) != adress && j < this->_nbEnemies - 1) {
+			newEnemy[j] = this->_enemies[i];
+			++j;
+		}
+		++i;
+	}
+	delete [] this->_enemies;
+	this->_enemies = newEnemy;
+	this->_nbEnemies -= 1;
+
+}
+
+void	GameObject::deleteEnemy( int index ) {
+
+	Enemy *newEnemy = new Enemy[this->_nbEnemies - 1];
+	int	i = 0;
+	int	j = 0;
+	while ( i < this->_nbEnemies) {
+		if (i != index && j < this->_nbEnemies - 1) {
+			newEnemy[j] = this->_enemies[i];
+			++j;
+		}
+		++i;
+	}
+	delete [] this->_enemies;
+	this->_enemies = newEnemy;
+	this->_nbEnemies -= 1;
+
 }
 
 const Player &GameObject::getPlayer( void ) const {

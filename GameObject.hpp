@@ -30,12 +30,14 @@ class GameObject {
 		const Enemy		*getEnemies( void ) const;
 		int				getNbEnemies( void ) const;
 		void			updateGame(int keyCode);
+		void 			newEnemy(void);
 		Enemy			createEnemy(void);
-
+		void 			deleteEnemy(Enemy *adress);
+		void 			deleteEnemy(int index);
 	private:
-		Player		_player;
-		Enemy		*_enemies;
-		int			_nbEnemies;
+		Player			_player;
+		Enemy			*_enemies;
+		int				_nbEnemies;
 
 };
 

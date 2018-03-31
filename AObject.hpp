@@ -26,7 +26,7 @@ class AObject {
 		int		getHp( void ) const;
 		int		takeDamage(int damage);
 		virtual void update(int keycode = 0) = 0;
-
+		bool onCollision(AObject const & aobj);
 	protected:
 		int		_pos[2];
 		int		_hp;
