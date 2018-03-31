@@ -16,7 +16,7 @@
 #include <ncurses.h>
 #include <cstdlib>
 
-Enemy::Enemy( void ) : skin('V')
+Enemy::Enemy( void ) : skin('V'), framesOfExistence(0)
 {
 	AObject::_pos[0] = rand () % COLS;
 	AObject::_pos[1] = 1;
@@ -30,6 +30,9 @@ Enemy::~Enemy( void )
 
 void Enemy::update( void )
 {
+	this->framesOfExistence++;
+	if (framesOfExistence % 2 == 0)
+		AObject::_pos[1]++;
 	move(AObject::_pos[1], AObject::_pos[0]);
 	addch(this->skin);
 }

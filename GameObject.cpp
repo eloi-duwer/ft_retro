@@ -45,6 +45,12 @@ GameObject	&GameObject::operator=(GameObject const &src) {
 
 }
 
+Enemy GameObject::createEnemy()
+{
+	this->_enemies[_nbEnemies] = new Enemy();
+	this->_nbEnemies += 1;
+}
+
 const Player &GameObject::getPlayer( void ) const {
 
 	return this->_player;

@@ -23,7 +23,7 @@ class Enemy : public AObject {
 		~Enemy( void );
 
 		char skin;
-
+		int framesOfExistence;
 		//Enemy &operator=( Enemy const &src );
 
 		virtual void update( void );

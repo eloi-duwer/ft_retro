@@ -24,7 +24,7 @@ int main() {
 	initscr();
 	
 	srand(time(NULL));
-	Map *map = new Map();
+	// Map *map = new Map();
 	Enemy *enemy = new Enemy();
 
 	int noExit = 1;
@@ -34,8 +34,11 @@ int main() {
 	halfdelay(0);
 	keypad(stdscr, TRUE);
 	noecho();
-	printw(map->getOutput().c_str());
+	move(posY, posX - 14);
+	printw("BIENVENUE SUR SPACE INVADERS");
+	int frames = 0;
 	while (noExit) {
+		frames++;
 		keyPressed = getch();
 		if (keyPressed == KEY_DOWN)
 			posY += 1;
@@ -49,6 +52,7 @@ int main() {
 			noExit = 0;
 		erase();
 		waddstr(stdscr, "Le joueur -> ");
+		// if (frames % 2 == 0)
 		enemy->update();
 		move(posY, posX);
 		addch('^');
