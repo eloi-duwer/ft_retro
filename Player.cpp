@@ -6,7 +6,7 @@
 /*   By: eduwer <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/31 14:42:05 by eduwer            #+#    #+#             */
-/*   Updated: 2018/03/31 15:25:09 by eduwer           ###   ########.fr       */
+/*   Updated: 2018/03/31 16:31:09 by eduwer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,53 @@ void	Player::updatePlayer( int keyCode ) {
 		this->_missiles[i].updateMissile( void );
 		++i;
 	}
+}
+
+void	Player::newMissile( void ) {
+
+	Missile *newMissiles = new Missile[this->_nbMissiles + 1];
+	int i = 0;
+	while ( i < this->_nbMissiles) {
+		newMissiles[i] = this->_missiles[i];
+		++i;
+	}
+	newMissiles[i].setPos(this->_pos[0], this->_pos[1]);
+	delete [] this->_missiles;
+	this->_missiles = newMissiles;
+	this->_nbMissiles += 1;
+
+}
+
+void	Player::deleteMissile(Missile *adress) {
+
+	Missile *newmissiles = new missile[this->_nbMissiles - 1];
+	int i, j = 0;
+	while ( i < this->_nbMissiles) {
+		if (&(this->_missiles[i]) != adress && j < this->_nbMissiles - 1) {
+			newmissiles[j] = this->_missiles[i];
+			++j;
+		}
+		++i;
+	}
+	delete [] this->_missiles;
+	this->_missiles = newmissiles;
+	this->_nbMissiles -= 1;
+
+}
+
+void	Player::deleteMissile( int index ) {
+
+	Missile *newmissiles = new missile[this->_nbMissiles - 1];
+	int i, j = 0;
+	while ( i < this->_nbMissiles) {
+		if (i != index && j < this->_nbMissiles - 1) {
+			newmissiles[j] = this->_missiles[i];
+			++j;
+		}
+		++i;
+	}
+	delete [] this->_missiles;
+	this->_missiles = newmissiles;
+	this->_nbMissiles -= 1;
+
 }
