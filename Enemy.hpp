@@ -1,35 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Object.hpp                                         :+:      :+:    :+:   */
+/*   Enemy.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eduwer <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/31 00:22:21 by eduwer            #+#    #+#             */
-/*   Updated: 2018/03/31 15:16:56 by eduwer           ###   ########.fr       */
+/*   Created: 2018/03/31 14:23:58 by eduwer            #+#    #+#             */
+/*   Updated: 2018/03/31 15:12:04 by eduwer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef _OBJECT_HPP_
-# define _OBJECT_HPP_
+#ifndef _ENEMY_
+# define _ENEMY_
 
-class Object {
+#include "Object.hpp"
+
+class Enemy : public Object {
 
 	public:
-		Object( void );
-		Object( int x, int y, int hp);
-		Object( Object const &src);
-		~Object( void );
+		Enemy ( void );
+		Enemy( Enemy const &src );
+		~Enemy( void );
 
-		Object &operator=(Object const &src);
-		const int		*getPos( void ) const;
-		int		getHp( void ) const;
-		int		takeDamage(int damage);
+		//Enemy &operator=( Enemy const &src );
 
-	protected:
-		int		_pos[2];
-		int		_hp;
+		void updateEnemy( void );
 
 };
 
-#endif
+# endif
