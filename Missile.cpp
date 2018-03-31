@@ -6,7 +6,7 @@
 /*   By: eduwer <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/31 18:04:12 by eduwer            #+#    #+#             */
-/*   Updated: 2018/03/31 18:09:44 by eduwer           ###   ########.fr       */
+/*   Updated: 2018/03/31 19:45:04 by eduwer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ Missile::Missile( void ) : AObject(0, 0, 1), _skin('|'){
 
 }
 
-Missile::Missile( Missile const &src ) : AObject(src._pos[0], src._pos[1], src._hp) {
+Missile::Missile( Missile const &src ) : AObject(src._pos[0], src._pos[1], src._hp), _skin(src._skin) {
 
 	return;
 

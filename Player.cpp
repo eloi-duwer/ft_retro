@@ -6,7 +6,7 @@
 /*   By: eduwer <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/31 14:42:05 by eduwer            #+#    #+#             */
-/*   Updated: 2018/03/31 18:49:54 by eduwer           ###   ########.fr       */
+/*   Updated: 2018/03/31 19:46:03 by eduwer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 #include "Missile.hpp"
 #include <ncurses.h>
 
-Player::Player( void ) : AObject(COLS / 2, LINES - 2, 1) {
+Player::Player( void ) : AObject(COLS / 2, LINES - 2, 1), _skin('H') {
 
 	return;
 
 }
 
-Player::Player( Player const &src ) : AObject(src._pos[0], src._pos[1], src._hp), _skin('H') {
+Player::Player( Player const &src ) : AObject(src._pos[0], src._pos[1], src._hp), _skin(src._skin) {
 
 	return;
 

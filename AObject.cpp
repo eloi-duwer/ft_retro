@@ -6,7 +6,7 @@
 /*   By: eduwer <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/31 15:05:13 by eduwer            #+#    #+#             */
-/*   Updated: 2018/03/31 15:17:57 by eduwer           ###   ########.fr       */
+/*   Updated: 2018/03/31 19:50:24 by eduwer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,21 @@ AObject::AObject( void )
 
 }
 
-AObject::AObject( int x, int y, int hp)
-{
-	std::cout << x << y << hp;
+AObject::AObject( int x, int y, int hp) : _hp(hp) {
+
+	this->_pos[0] = x;
+	this->_pos[1] = y;
 	return;
+
 }
 
 AObject::AObject( AObject const &src )
 {
-	*this  = src;
+	*this = src;
 	return;
 }
 
-AObject::~AObject( void ) 
+AObject::~AObject( void )
 {
 
 	return;

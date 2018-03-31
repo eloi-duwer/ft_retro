@@ -6,7 +6,7 @@
 /*   By: eduwer <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 21:42:21 by eduwer            #+#    #+#             */
-/*   Updated: 2018/03/31 17:27:20 by eduwer           ###   ########.fr       */
+/*   Updated: 2018/03/31 19:51:45 by eduwer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,18 +43,10 @@ int main() {
 		if (frames % 20 == 0)
 			GO->newEnemy();
 		keyPressed = getch();
-		if (keyPressed == KEY_DOWN)
-			posY += 1;
-		else if (keyPressed == KEY_UP)
-			posY -= 1;
-		else if (keyPressed == KEY_RIGHT)
-			posX += 1;
-		else if (keyPressed == KEY_LEFT)
-			posX -= 1;
-		else if (keyPressed == 27)
+		if (keyPressed == 27)
 			noExit = 0;
 		erase();
-		GO->updateGame(0);
+		GO->updateGame(keyPressed);
 		wborder(stdscr, 0, 0, 0, 0, 0, 0, 0, 0);
 		wrefresh(stdscr);
 	}
