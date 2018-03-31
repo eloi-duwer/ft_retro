@@ -9,7 +9,8 @@ SRCS =	main.cpp \
 		Enemy.cpp \
 		Map.cpp \
 		Player.cpp \
-		Missile.cpp
+		Missile.cpp \
+		GameObject.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 

@@ -6,7 +6,7 @@
 /*   By: eduwer <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/31 14:42:05 by eduwer            #+#    #+#             */
-/*   Updated: 2018/03/31 18:13:24 by eduwer           ###   ########.fr       */
+/*   Updated: 2018/03/31 18:44:19 by eduwer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,10 @@ void	Player::update( int keyCode ) {
 	int i = 0;
 	while (i < this->_nbMissiles) {
 		this->_missiles[i].update();
+		if (this->_missiles[i].getPos()[1] < 0) {
+			deleteMissile(i);
+			--i;
+		}
 		++i;
 	}
 }
