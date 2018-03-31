@@ -1,33 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Enemy.hpp                                         :+:      :+:    :+:   */
+/*   Missile.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eduwer <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/31 14:23:58 by eduwer            #+#    #+#             */
-/*   Updated: 2018/03/31 15:12:04 by eduwer           ###   ########.fr       */
+/*   Created: 2018/03/31 18:04:12 by eduwer            #+#    #+#             */
+/*   Updated: 2018/03/31 18:09:44 by eduwer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef _ENEMY_
-# define _ENEMY_
+#include "Missile.hpp"
 
-#include "AObject.hpp"
+Missile::Missile( void ) : AObject(0, 0, 1) {
 
-class Enemy : public AObject {
+	return;
 
-	public:
-		Enemy ( void );
-		Enemy( Enemy const &src );
-		~Enemy( void );
+}
 
-		char skin;
-		int framesOfExistence;
-		//Enemy &operator=( Enemy const &src );
+Missile::Missile( Missile const &src ) : AObject(src._pos[0], src._pos[1], src._hp) {
 
-		virtual void update(int keycode = 0);
+	return;
 
-};
+}
 
-# endif
+Missile::~Missile( void ) {
+
+	return;
+
+}
+
+void	Missile::update( int keycode ) {
+
+	keycode++;
+	this->_pos[1] -= 1;
+
+}
+
+void	Missile::setPos(int x, int y) {
+
+	this->_pos[0] = x;
+	this->_pos[1] = y;
+
+}

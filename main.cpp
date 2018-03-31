@@ -6,7 +6,7 @@
 /*   By: eduwer <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 21:42:21 by eduwer            #+#    #+#             */
-/*   Updated: 2018/03/31 14:47:18 by eduwer           ###   ########.fr       */
+/*   Updated: 2018/03/31 17:27:20 by eduwer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int main() {
 	int posY = LINES / 2;
 	int posX = COLS / 2;
 	int keyPressed;
-	halfdelay(0);
+	halfdelay(1);
 	keypad(stdscr, TRUE);
 	noecho();
 	move(posY, posX - 14);

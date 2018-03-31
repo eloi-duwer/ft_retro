@@ -25,7 +25,7 @@ class AObject {
 		const int		*getPos( void ) const;
 		int		getHp( void ) const;
 		int		takeDamage(int damage);
-		virtual void update() = 0;
+		virtual void update(int keycode = 0) = 0;
 
 	protected:
 		int		_pos[2];

@@ -6,7 +6,7 @@
 /*   By: eduwer <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/31 15:19:03 by eduwer            #+#    #+#             */
-/*   Updated: 2018/03/31 15:27:00 by eduwer           ###   ########.fr       */
+/*   Updated: 2018/03/31 17:21:40 by eduwer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,9 @@ Enemy::~Enemy( void )
 
 }
 
-void Enemy::update( void )
+void Enemy::update( int keycode )
 {
+	keycode++;
 	this->framesOfExistence++;
 	if (framesOfExistence % 2 == 0)
 		AObject::_pos[1]++;

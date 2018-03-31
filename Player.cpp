@@ -6,7 +6,7 @@
 /*   By: eduwer <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/31 14:42:05 by eduwer            #+#    #+#             */
-/*   Updated: 2018/03/31 16:31:09 by eduwer           ###   ########.fr       */
+/*   Updated: 2018/03/31 18:13:24 by eduwer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,21 +39,21 @@ void	Player::update( int keyCode ) {
 		this->_pos[1] += 1;
 	else if (keyCode == KEY_UP)
 		this->_pos[1] -= 1;
-	else */if (keyCode == KEY_LEFT)
+	else */if (keyCode == KEY_LEFT && this->_pos[0] > 0)
 		this->_pos[0] -= 1;
-	else if (keyCode == KEY_RIGHT)
+	else if (keyCode == KEY_RIGHT && this->_pos[0] < COLS - 1)
 		this->_pos[0] += 1;
 	else if (keyCode == ' ')
-		Player::newMissile();
+		Player::_newMissile();
 
 	int i = 0;
 	while (i < this->_nbMissiles) {
-		this->_missiles[i].updateMissile( void );
+		this->_missiles[i].update();
 		++i;
 	}
 }
 
-void	Player::newMissile( void ) {
+void	Player::_newMissile( void ) {
 
 	Missile *newMissiles = new Missile[this->_nbMissiles + 1];
 	int i = 0;
@@ -70,8 +70,9 @@ void	Player::newMissile( void ) {
 
 void	Player::deleteMissile(Missile *adress) {
 
-	Missile *newmissiles = new missile[this->_nbMissiles - 1];
-	int i, j = 0;
+	Missile *newmissiles = new Missile[this->_nbMissiles - 1];
+	int	i = 0;
+	int	j = 0;
 	while ( i < this->_nbMissiles) {
 		if (&(this->_missiles[i]) != adress && j < this->_nbMissiles - 1) {
 			newmissiles[j] = this->_missiles[i];
@@ -87,8 +88,9 @@ void	Player::deleteMissile(Missile *adress) {
 
 void	Player::deleteMissile( int index ) {
 
-	Missile *newmissiles = new missile[this->_nbMissiles - 1];
-	int i, j = 0;
+	Missile *newmissiles = new Missile[this->_nbMissiles - 1];
+	int	i = 0;
+	int	j = 0;
 	while ( i < this->_nbMissiles) {
 		if (i != index && j < this->_nbMissiles - 1) {
 			newmissiles[j] = this->_missiles[i];
