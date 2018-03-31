@@ -4,7 +4,12 @@ CXX = clang++
 
 CXXFLAGS = -Wall -Wextra -Werror
 
-SRCS = main.cpp
+SRCS =	main.cpp \
+		AObject.cpp \
+		Enemy.cpp \
+		Map.cpp \
+		Player.cpp \
+		Missile.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
