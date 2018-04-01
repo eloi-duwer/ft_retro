@@ -6,7 +6,7 @@
 /*   By: eduwer <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/31 00:37:23 by eduwer            #+#    #+#             */
-/*   Updated: 2018/04/01 18:14:43 by eduwer           ###   ########.fr       */
+/*   Updated: 2018/04/01 20:08:21 by eduwer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ class Player : public LaunchMissiles {
 		Player( void );
 		Player( Player const &src );
 		~Player( void );
-
-//		Player	&operator=(Player const &src);
 
 		virtual bool	update( int keyCode );
 

@@ -6,7 +6,7 @@
 /*   By: eduwer <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 21:42:21 by eduwer            #+#    #+#             */
-/*   Updated: 2018/04/01 19:54:41 by eduwer           ###   ########.fr       */
+/*   Updated: 2018/04/01 20:06:13 by eduwer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 #include <ncurses.h>
 #include <sstream>
 
-
-#include "Map.hpp"
 #include "AObject.hpp"
 #include "Enemy.hpp"
 #include "GameObject.hpp"

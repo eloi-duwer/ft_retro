@@ -6,7 +6,7 @@
 /*   By: eduwer <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/31 14:28:55 by eduwer            #+#    #+#             */
-/*   Updated: 2018/04/01 19:45:26 by eduwer           ###   ########.fr       */
+/*   Updated: 2018/04/01 20:20:05 by eduwer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,7 @@ bool	GameObject::updateGame( int keyCode ) {
 			this->deleteEnemy(i);
 			if (this->_player.takeDamage( 1 ) == 0)
 				return false;
+			--i;
 		}
 		j = 0;
 		while (j < this->_enemies[i].getNbMissiles()) { //Collision player/missile

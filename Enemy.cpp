@@ -6,17 +6,16 @@
 /*   By: eduwer <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/31 15:19:03 by eduwer            #+#    #+#             */
-/*   Updated: 2018/04/01 19:25:55 by eduwer           ###   ########.fr       */
+/*   Updated: 2018/04/01 20:02:48 by eduwer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Enemy.hpp"
 #include "AObject.hpp"
-#include "Map.hpp"
 #include <ncurses.h>
 #include <cstdlib>
 
-Enemy::Enemy( void ) : LaunchMissiles((rand() % COLS - 2) + 10, 1, 1, "\\I/", 3, rand() % 9 + 5, 4)
+Enemy::Enemy( void ) : LaunchMissiles((rand() % COLS) - 2, 1, 1, "\\I/", 3, rand() % 9 + 5, 4)
 {
 
 	return;

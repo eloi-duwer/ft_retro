@@ -7,7 +7,6 @@ CXXFLAGS = -Wall -Wextra -Werror -O3
 SRCS =	main.cpp \
 		AObject.cpp \
 		Enemy.cpp \
-		Map.cpp \
 		Player.cpp \
 		Missile.cpp \
 		GameObject.cpp \
