@@ -43,8 +43,23 @@ AObject::~AObject( void )
 
 bool AObject::onCollision(AObject const & aobj)
 {
-	if (this->_pos[0] == aobj.getPos()[0] &&
-		this->_pos[1] == aobj.getPos()[1])
+	if ((this->_pos[0] == aobj.getPos()[0] &&
+		 this->_pos[1] == aobj.getPos()[1]) ||
+
+		(this->_pos[0] - 1 == aobj.getPos()[0] &&
+         this->_pos[1] == aobj.getPos()[1]) ||
+
+		(this->_pos[0] + 1 == aobj.getPos()[0] &&
+         this->_pos[1] == aobj.getPos()[1]) ||
+		
+		(this->_pos[0] == aobj.getPos()[0] &&
+         this->_pos[1] + 1== aobj.getPos()[1]) ||
+		
+		(this->_pos[0] - 1 == aobj.getPos()[0] &&
+         this->_pos[1] + 1== aobj.getPos()[1]) ||
+
+		(this->_pos[0] + 1 == aobj.getPos()[0] &&
+ 		 this->_pos[1] + 1 == aobj.getPos()[1]))
 		return true;
 	return false;
 }

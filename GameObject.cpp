@@ -15,7 +15,7 @@
 #include <cstdlib>
 
 
-GameObject::GameObject( void ) : _player(), _enemies(NULL), _nbEnemies(0) {
+GameObject::GameObject( void ) : _player(), _enemies(NULL), _nbEnemies(0), _score(0) {
 
 	return;
 
@@ -108,6 +108,11 @@ const Enemy *GameObject::getEnemies( void ) const {
 
 }
 
+int 	GameObject::getScore(void) 
+{
+	return (this->_score);
+}
+
 int		GameObject::getNbEnemies( void ) const {
 
 	return this->_nbEnemies;
@@ -122,25 +127,31 @@ void	GameObject::updateGame( int keyCode ) {
 	this->_player.update( keyCode );
 	while (i < this->_nbEnemies) {
 		j = 0;
-		while (j < this->_player.getNbMissiles()) {
-			if (this->_enemies[i].onCollision(this->_player.getMissiles()[j])) {
-				this->deleteEnemy(i);
-				this->_player.deleteMissile(j);
-				--i;
-				break;
-			}
-			++j;
-		}
+		// while (j < this->_player.getNbMissiles()) {
+		// 	if (this->_enemies[i].onCollision(this->_player.getMissiles()[j])) {
+		// 		this->deleteEnemy(i);
+		// 		this->_player.deleteMissile(j);
+		// 		--i;
+		// 		break;
+		// 	}
+		// 	++j;
+		// }
+		// Ca fait segfault :c
 		this->_enemies[i].update();
 		if (this->_enemies[i].onCollision(this->_player)) {
-			endwin();
-			std::exit(0);
+			this->deleteEnemy(i);
+			// endwin();
+			// std::exit(0); // Avant, on quittait le jeu
+			this->_player.loseLive();
 		}
 		while (j < this->_player.getNbMissiles()) {
 			if (this->_enemies[i].onCollision(this->_player.getMissiles()[j])) {
 				this->deleteEnemy(i);
 				this->_player.deleteMissile(j);
-				--i;
+				{
+					--i;
+					this->_score++;	
+				}
 				break;
 			}
 			++j;

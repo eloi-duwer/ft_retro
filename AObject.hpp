@@ -26,7 +26,10 @@ class AObject {
 		int		getHp( void ) const;
 		int		takeDamage(int damage);
 		virtual bool update(int keycode = 0) = 0;
-		bool onCollision(AObject const & aobj);
+		virtual bool onCollision(AObject const & aobj);
+
+		int framesExisted;
+
 	protected:
 		int		_pos[2];
 		int		_hp;

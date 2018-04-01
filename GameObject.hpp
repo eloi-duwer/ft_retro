@@ -28,6 +28,7 @@ class GameObject {
 
 		const Player	&getPlayer( void ) const;
 		const Enemy		*getEnemies( void ) const;
+		int 			getScore( void );
 		int				getNbEnemies( void ) const;
 		void			updateGame(int keyCode);
 		void 			newEnemy(void);
@@ -38,6 +39,7 @@ class GameObject {
 		Player			_player;
 		Enemy			*_enemies;
 		int				_nbEnemies;
+		int				_score;
 
 };
 

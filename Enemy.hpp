@@ -14,6 +14,7 @@
 # define _ENEMY_
 
 #include "AObject.hpp"
+#include <iostream>
 
 class Enemy : public AObject {
 
@@ -24,10 +25,16 @@ class Enemy : public AObject {
 
 		char skin;
 		int framesOfExistence;
+		int speed;
 		//Enemy &operator=( Enemy const &src );
 
 		virtual bool update(int keycode = 0);
+		virtual bool onCollision(AObject const & aobj);
 
+private:
+		std::string _skinString;
 };
 
 # endif
+
+
