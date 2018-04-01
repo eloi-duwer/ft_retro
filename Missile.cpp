@@ -6,20 +6,21 @@
 /*   By: eduwer <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/31 18:04:12 by eduwer            #+#    #+#             */
-/*   Updated: 2018/03/31 20:11:36 by eduwer           ###   ########.fr       */
+/*   Updated: 2018/04/01 18:47:34 by eduwer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Missile.hpp"
 
-Missile::Missile( void ) : AObject(0, 0, 1), _skin('|'){
+Missile::Missile( void ) : AObject(0, 0, 1, "|", 1, 1) {
 
 	return;
 
 }
 
-Missile::Missile( Missile const &src ) : AObject(src._pos[0], src._pos[1], src._hp), _skin(src._skin) {
+Missile::Missile( Missile const &src ) {
 
+	*this = src;
 	return;
 
 }
@@ -30,14 +31,15 @@ Missile::~Missile( void ) {
 
 }
 
-bool	Missile::update( int keycode ) {
+bool	Missile::update( int directionSpeed ) {
 
-	if (this->_pos[1] < 1)
+	++_framesOfExistence;
+	if ((directionSpeed < 0 && this->_pos[1] < 1) || (directionSpeed > 0 && this->_pos[1] > LINES - 1))
 		return false;
-	keycode++;
-	this->_pos[1] -= 1;
+	if (_framesOfExistence % directionSpeed == 0)
+		this->_pos[1] += directionSpeed > 0 ? 1 : -1;
 	move(this->_pos[1], this->_pos[0]);
-	addch(this->_skin);
+	addch(this->_skinString.c_str()[0]);
 	return true;
 }
 

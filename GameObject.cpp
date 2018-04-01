@@ -6,7 +6,7 @@
 /*   By: eduwer <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/31 14:28:55 by eduwer            #+#    #+#             */
-/*   Updated: 2018/03/31 20:42:38 by eduwer           ###   ########.fr       */
+/*   Updated: 2018/04/01 19:45:26 by eduwer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,9 @@ GameObject::GameObject( void ) : _player(), _enemies(NULL), _nbEnemies(0), _scor
 
 }
 
-GameObject::GameObject( GameObject const &src) :
-_player(src._player),
-_enemies(src._enemies),
-_nbEnemies(src._nbEnemies) {
+GameObject::GameObject( GameObject const &src) {
 
+	*this = src;
 	return;
 
 }
@@ -39,9 +37,16 @@ GameObject::~GameObject( void ) {
 
 GameObject	&GameObject::operator=(GameObject const &src) {
 
+	if (this->_enemies != NULL)
+		delete[] this->_enemies;
 	this->_player = src._player;
-	this->_enemies = src._enemies;
 	this->_nbEnemies = src._nbEnemies;
+	this->_enemies = new Enemy[src._nbEnemies];
+	int i = 0;
+	while (i < this->_nbEnemies) {
+		this->_enemies[i] = src._enemies[i];
+		++i;
+	}
 	return *this;
 
 }
@@ -119,7 +124,7 @@ int		GameObject::getNbEnemies( void ) const {
 
 }
 
-void	GameObject::updateGame( int keyCode ) {
+bool	GameObject::updateGame( int keyCode ) {
 
 	int i = 0;
 	int j;
@@ -127,35 +132,34 @@ void	GameObject::updateGame( int keyCode ) {
 	this->_player.update( keyCode );
 	while (i < this->_nbEnemies) {
 		j = 0;
-		// while (j < this->_player.getNbMissiles()) {
-		// 	if (this->_enemies[i].onCollision(this->_player.getMissiles()[j])) {
-		// 		this->deleteEnemy(i);
-		// 		this->_player.deleteMissile(j);
-		// 		--i;
-		// 		break;
-		// 	}
-		// 	++j;
-		// }
-		// Ca fait segfault :c
 		this->_enemies[i].update();
-		if (this->_enemies[i].onCollision(this->_player)) {
+		if (this->_enemies[i].onCollision(this->_player)) { //Collision ennemy/player
 			this->deleteEnemy(i);
-			// endwin();
-			// std::exit(0); // Avant, on quittait le jeu
-			this->_player.loseLive();
+			if (this->_player.takeDamage( 1 ) == 0)
+				return false;
 		}
-		while (j < this->_player.getNbMissiles()) {
+		j = 0;
+		while (j < this->_enemies[i].getNbMissiles()) { //Collision player/missile
+			if (this->_player.onCollision(this->_enemies[i].getMissiles()[j])) {
+				this->_enemies[i].deleteMissile(j);
+				if(this->_player.takeDamage( 1 ) == 0)
+					return false;
+				break;
+			}
+			++j;
+		}
+		while (j < this->_player.getNbMissiles()) { //Collision ennemy/missile
 			if (this->_enemies[i].onCollision(this->_player.getMissiles()[j])) {
 				this->deleteEnemy(i);
 				this->_player.deleteMissile(j);
-				{
-					--i;
-					this->_score++;	
-				}
+				--i;
+				this->_score++;
 				break;
 			}
 			++j;
 		}
 		++i;
 	}
+	return true;
 }
+

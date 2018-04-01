@@ -6,7 +6,7 @@
 /*   By: eduwer <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 21:42:21 by eduwer            #+#    #+#             */
-/*   Updated: 2018/03/31 19:51:45 by eduwer           ###   ########.fr       */
+/*   Updated: 2018/04/01 19:54:41 by eduwer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,23 +20,38 @@
 #include "Enemy.hpp"
 #include "GameObject.hpp"
 
+void	endScreen( GameObject &GO, int time) {
+
+	std::string	text("GAME OVER");
+	WINDOW *win = subwin(stdscr, 10, 50, LINES / 2 - 5, COLS / 2 - 25);
+	wborder(win, '|', '|', '-', '-', '+', '+', '+', '+');
+	mvwprintw(win, 2, 25 - text.size() / 2, text.c_str());
+	text = "Score: " + std::to_string(GO.getScore());
+	mvwprintw(win, 4, 25 - text.size() / 2, text.c_str());
+	text = "Time survived: " + std::to_string(time) + " seconds";
+	mvwprintw(win, 6, 25 - text.size() / 2, text.c_str());
+	wrefresh(win);
+	wrefresh(stdscr);
+	nodelay(stdscr, FALSE);
+	napms(3000);
+	delwin(win);
+	endwin();
+	std::exit(0);
+
+}
 
 int main() {
 	initscr();
 	std::string output;
 	srand(time(NULL));
 	setlocale(LC_ALL,"");
-	// Map *map = new Map();
-	// Enemy *enemy = new Enemy();
-	GameObject *GO = new GameObject();
+	GameObject GO;
 	int noExit = 1;
 	int posY = LINES / 2;
 	int posX = COLS / 2;
 	int keyPressed;
-	// halfdelay(1);
-	// nodelay(stdscr,TRUE);
-	// timeout();
-	start_color();			/* Start color 			*/
+
+	start_color();
 
 	keypad(stdscr, TRUE);
 	noecho();
@@ -46,26 +61,31 @@ int main() {
 	nodelay(stdscr, true);
 	init_pair(1, COLOR_RED, COLOR_BLACK);
 	init_pair(2, COLOR_YELLOW, COLOR_BLACK);
-	init_pair(3, COLOR_BLUE, COLOR_BLACK);
-	init_pair(4, COLOR_BLACK, COLOR_WHITE);
+	init_pair(3, COLOR_GREEN, COLOR_BLACK);
+	init_pair(4, COLOR_MAGENTA, COLOR_BLACK);
+	init_pair(5, COLOR_CYAN, COLOR_BLACK);
+	init_pair(6, COLOR_BLACK, COLOR_WHITE);
 	while (noExit) {
 		frames++;
 		if (frames % 100 == 0)
-			GO->newEnemy();
+			GO.newEnemy();
 		keyPressed = getch();
 		if (keyPressed == 27)
-			noExit = 0;
+			break;
 		erase();
-		GO->updateGame(keyPressed);
- 		wborder(stdscr, 0, 0, 0, 0, 0, 0, 0, 0);
- 		move(0, 5);
-		attron(COLOR_PAIR(4));
-		output = "Welcome to Space invaders ! Score = " + std::to_string(GO->getScore()) + " ";
+		if (!GO.updateGame(keyPressed))
+			break;
+		wborder(stdscr, 0, 0, 0, 0, 0, 0, 0, 0);
+		move(0, 5);
+		attron(COLOR_PAIR(6));
+		output = "Welcome to Space invaders ! Score = " + std::to_string(GO.getScore());
+		output += ", lifes: " + std::to_string(GO.getPlayer().getHp());
+		output += ", time in life: " + std::to_string((frames * 17) / 1000) + " seconds";
 		addstr(output.c_str());
-		attroff(COLOR_PAIR(4));
- 		napms(17);
+		attroff(COLOR_PAIR(6));
+		napms(17);
 		wrefresh(stdscr);
 	}
-	endwin();
+	endScreen(GO, (frames * 17) / 1000);
 	return 0;
 }

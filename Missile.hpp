@@ -6,7 +6,7 @@
 /*   By: eduwer <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/31 17:54:30 by eduwer            #+#    #+#             */
-/*   Updated: 2018/03/31 18:04:02 by eduwer           ###   ########.fr       */
+/*   Updated: 2018/04/01 15:21:32 by eduwer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,8 @@ class Missile : public AObject {
 		Missile( Missile const &src );
 		~Missile( void );
 
-		virtual bool update( int keycode = 0 );
+		virtual bool	update( int keycode = 0 );
 		void			setPos( int x, int y );
-private:
-		char _skin;
 
 };
 

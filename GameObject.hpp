@@ -6,7 +6,7 @@
 /*   By: eduwer <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 23:48:30 by eduwer            #+#    #+#             */
-/*   Updated: 2018/03/31 14:41:17 by eduwer           ###   ########.fr       */
+/*   Updated: 2018/04/01 19:44:20 by eduwer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,12 @@ class GameObject {
 		const Enemy		*getEnemies( void ) const;
 		int 			getScore( void );
 		int				getNbEnemies( void ) const;
-		void			updateGame(int keyCode);
+		bool			updateGame(int keyCode);
 		void 			newEnemy(void);
 		Enemy			createEnemy(void);
 		void 			deleteEnemy(Enemy *adress);
 		void 			deleteEnemy(int index);
+
 	private:
 		Player			_player;
 		Enemy			*_enemies;

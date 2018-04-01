@@ -2,7 +2,7 @@ NAME = ft_retro
 
 CXX = clang++
 
-CXXFLAGS = -Wall -Wextra -Werror
+CXXFLAGS = -Wall -Wextra -Werror -O3
 
 SRCS =	main.cpp \
 		AObject.cpp \
@@ -10,7 +10,8 @@ SRCS =	main.cpp \
 		Map.cpp \
 		Player.cpp \
 		Missile.cpp \
-		GameObject.cpp
+		GameObject.cpp \
+		LaunchMissiles.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
